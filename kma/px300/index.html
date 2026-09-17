@@ -137,6 +137,9 @@ header.top{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92);
 /* form card */
 .form-card{background:#fff; border:2px solid var(--accent); border-radius:18px; padding:18px; color:var(--ink); box-shadow:var(--shadow)}
 .form-card h3{margin-bottom:2px; font-size:18px}
+.howq{display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; padding:0 0 8px; margin:0; font:inherit; font-weight:800; font-size:18px; color:var(--ink); cursor:pointer; text-align:left}
+.howq .chev{font-size:16px; color:var(--accent); transition:transform .25s} .howq[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.steps4[hidden]{display:none}
 .form-card .sub{color:var(--muted); font-size:13.5px; margin-bottom:12px}
 .inp{width:100%; padding:14px 15px; border:1.5px solid #cfd8e3; border-radius:12px; font-size:16px; font-family:inherit; outline:none; margin-bottom:10px;
   transition:border-color .15s, box-shadow .15s}
@@ -326,7 +329,6 @@ body.free .disc,body:not(.free) .nodisc{display:none}
 
       <div id="buy">
         <h1>PX-300® — ο μοναδικός επίσημος ιστότοπος του παρασκευαστή στην Ελλάδα</h1>
-        <p class="sub-h">PX-300 απευθείας από τον παρασκευαστή: χωρίς προκαταβολή, πληρώνετε τον διανομέα.</p>
         <div class="price-box">
           <span class="price-new">39 €</span>
           <span class="price-old">78 €</span>
@@ -336,8 +338,8 @@ body.free .disc,body:not(.free) .nodisc{display:none}
 
         <div class="form-card">
           <form class="order-form" autocomplete="on" novalidate>
-            <h3>Παραγγείλτε το αυθεντικό προϊόν</h3>
-            <ol class="steps4"><li>Αφήνετε το όνομα και το τηλέφωνό σας</li><li>Σας καλεί σύμβουλος να επιβεβαιώσει διεύθυνση και ώρα, χωρίς στοιχεία κάρτας</li><li>Ο διανομέας φέρνει το δέμα σε 1-3 ημέρες</li><li>Ελέγχετε το δέμα κατά την παραλαβή και πληρώνετε τον διανομέα</li></ol>
+            <button type="button" class="howq" aria-expanded="false">Πώς να παραγγείλω;<span class="chev">▾</span></button>
+            <ol class="steps4" hidden><li>Αφήνετε το όνομα και το τηλέφωνό σας</li><li>Σας καλεί σύμβουλος να επιβεβαιώσει διεύθυνση και ώρα, χωρίς στοιχεία κάρτας</li><li>Ο διανομέας φέρνει το δέμα σε 1-3 ημέρες</li><li>Ελέγχετε το δέμα κατά την παραλαβή και πληρώνετε τον διανομέα</li></ol>
             <input class="inp" type="text" name="name" placeholder="Ονοματεπώνυμο" autocomplete="name">
             <div class="phone-field"><span class="p48">🇬🇷 +30</span><input class="inp" type="tel" name="phone" placeholder="691 234 5678" inputmode="numeric" autocomplete="tel"></div>
             <p class="ph-err">Εισαγάγετε έγκυρο αριθμό τηλεφώνου</p>
@@ -559,8 +561,8 @@ body.free .disc,body:not(.free) .nodisc{display:none}
         </div>
         <div class="form-card">
           <form class="order-form" autocomplete="on" novalidate>
-            <h3>Παραγγείλτε το αυθεντικό προϊόν</h3>
-            <ol class="steps4"><li>Αφήνετε το όνομα και το τηλέφωνό σας</li><li>Σας καλεί σύμβουλος να επιβεβαιώσει διεύθυνση και ώρα, χωρίς στοιχεία κάρτας</li><li>Ο διανομέας φέρνει το δέμα σε 1-3 ημέρες</li><li>Ελέγχετε το δέμα κατά την παραλαβή και πληρώνετε τον διανομέα</li></ol>
+            <button type="button" class="howq" aria-expanded="false">Πώς να παραγγείλω;<span class="chev">▾</span></button>
+            <ol class="steps4" hidden><li>Αφήνετε το όνομα και το τηλέφωνό σας</li><li>Σας καλεί σύμβουλος να επιβεβαιώσει διεύθυνση και ώρα, χωρίς στοιχεία κάρτας</li><li>Ο διανομέας φέρνει το δέμα σε 1-3 ημέρες</li><li>Ελέγχετε το δέμα κατά την παραλαβή και πληρώνετε τον διανομέα</li></ol>
             <input class="inp" type="text" name="name" placeholder="Ονοματεπώνυμο" autocomplete="name">
             <div class="phone-field"><span class="p48">🇬🇷 +30</span><input class="inp" type="tel" name="phone" placeholder="691 234 5678" inputmode="numeric" autocomplete="tel"></div>
             <p class="ph-err">Εισαγάγετε έγκυρο αριθμό τηλεφώνου</p>
@@ -632,6 +634,8 @@ body.free .disc,body:not(.free) .nodisc{display:none}
 
 
   // --- FAQ ---
+  // «Как заказать?» — шаги заказа раскрываются по клику (17.09)
+  Array.prototype.forEach.call(document.querySelectorAll('.howq'),function(b){ b.addEventListener('click',function(){ var ol=b.nextElementSibling, o=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded',o?'false':'true'); if(ol) ol.hidden=o; }); });
   document.querySelectorAll('.q button').forEach(function(btn){
     btn.addEventListener('click',function(){ var q=btn.parentElement, a=q.querySelector('.ans');
       if(q.classList.contains('open')){ q.classList.remove('open'); a.style.maxHeight=null; }
